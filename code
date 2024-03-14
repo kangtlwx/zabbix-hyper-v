@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2023-11-29T07:43:25Z</date>
+    <groups>
+        <group>
+            <name>HyperV VM</name>
+        </group>
+        <group>
+            <name>Templates</name>
+        </group>
+        <group>
+            <name>Windows</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Windows HyperV VM Guest</template>
+            <name>Template Windows HyperV VM Guest</name>
+            <groups>
+                <group>
+                    <name>HyperV VM</name>
+                </group>
+                <group>
+                    <name>Templates</name>
+                </group>
+                <group>
+                    <name>Windows</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Hyper-V VM CPU Discovery</name>
+                    <key>hyperv.discoveryitem[GetVMCPUs,{HOST.NAME}]</key>
+                    <delay>10m</delay>
+                    <description>Hyper-V VM Virtual CPU Discovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual CPU {#VMCPU} Total</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMCPUTotal,{HOST.NAME},&quot;{#VMCPU}&quot;]</key>
+                            <history>30d</history>
+                            <units>%</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Hyper-V VM Virtual CPU {#VMCPU} Total</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00BB00</color>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMCPUTotal,{HOST.NAME},&quot;{#VMCPU}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <request_method>POST</request_method>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Hyper-V VM Virtual Disk Discovery</name>
+                    <key>hyperv.discoveryitem[GetVMDisks,{HOST.NAME}]</key>
+                    <delay>10m</delay>
+                    <description>Hyper-V VM Virtual Disk Diskcovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} Bytes Read</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMDISKBytesRead,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                            <history>30d</history>
+                            <units>Bytes</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} Bytes Write</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMDISKBytesWrite,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                            <history>30d</history>
+                            <units>Bytes</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} IOPS Read</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMDISKOpsRead,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                            <history>30d</history>
+                            <units>ops</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} IOPS Write</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMDISKOpsWrite,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                            <history>30d</history>
+                            <units>ops</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Hyper-V VM Virtual Disk {#VMDISK} Performance</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00CC00</color>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMDISKBytesRead,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>0000CC</color>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMDISKBytesWrite,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>00BBBB</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMDISKOpsRead,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>BOLD_LINE</drawtype>
+                                    <color>DD00DD</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMDISKOpsWrite,{HOST.NAME},&quot;{#VMDISK}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <request_method>POST</request_method>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Hyper-V VM Virtual NIC Discovery</name>
+                    <key>hyperv.discoveryitem[GetVMNICs,{HOST.NAME}]</key>
+                    <delay>10m</delay>
+                    <description>Hyper-V VM Virtual Net Adapter Diskcovery</description>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Hyper-V VM VNIC {#VMNIC} Bytes Recvd</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMNICRecv,{HOST.NAME},&quot;{#VMNIC}&quot;]</key>
+                            <history>30d</history>
+                            <units>Bytes</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Hyper-V VM VNIC {#VMNIC} Bytes Sent</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>hyperv.check[VMNICSent,{HOST.NAME},&quot;{#VMNIC}&quot;]</key>
+                            <history>30d</history>
+                            <units>Bytes</units>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Hyper-V VM {#VMNIC} Network usage</name>
+                            <graph_items>
+                                <graph_item>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>0000DD</color>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMNICRecv,{HOST.NAME},&quot;{#VMNIC}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>00C800</color>
+                                    <item>
+                                        <host>Template Windows HyperV VM Guest</host>
+                                        <key>hyperv.check[VMNICSent,{HOST.NAME},&quot;{#VMNIC}&quot;]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <request_method>POST</request_method>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
